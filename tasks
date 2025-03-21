@@ -1,0 +1,8 @@
+TO DO LIST :
+
+1) Make the models ( with their dto's ). Configure the database. DONE (In-memory h2 database). DONE
+2) Configure the repository, service and put some Hardcoded values in the DataInitializer.
+3) Configure the security
+4) Configure the controllers
+5) Test it with SwaggerUI
+6) Push it to github as a project.
