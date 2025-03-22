@@ -6,7 +6,7 @@ import mk.finki.ukim.mk.fitness_app.model.Enum.User_Roles;
 
 @Entity
 @Data
-public class User {
+public class Memeber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +23,14 @@ public class User {
 
 
 
-    public User(Long id, String username, String password, User_Roles role) {
+    public Memeber(Long id, String username, String password, User_Roles role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public User() {
+    public Memeber() {
 
     }
 }

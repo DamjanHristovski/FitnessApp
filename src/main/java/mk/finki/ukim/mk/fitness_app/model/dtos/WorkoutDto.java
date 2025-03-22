@@ -17,4 +17,28 @@ public class WorkoutDto {
         this.exercises = exercises;
         this.workout_days = workout_days;
     }
+
+    public String getWorkout_split() {
+        return workout_split;
+    }
+
+    public void setWorkout_split(String workout_split) {
+        this.workout_split = workout_split;
+    }
+
+    public List<ExerciseDto> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<ExerciseDto> exercises) {
+        this.exercises = exercises;
+    }
+
+    public Integer getWorkout_days() {
+        return workout_days;
+    }
+
+    public void setWorkout_days(Integer workout_days) {
+        this.workout_days = workout_days;
+    }
 }

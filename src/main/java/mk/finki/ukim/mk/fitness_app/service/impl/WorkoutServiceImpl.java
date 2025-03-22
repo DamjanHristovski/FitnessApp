@@ -9,10 +9,12 @@ import mk.finki.ukim.mk.fitness_app.model.Workout;
 import mk.finki.ukim.mk.fitness_app.model.dtos.WorkoutDto;
 import mk.finki.ukim.mk.fitness_app.repository.ExerciseRepository;
 import mk.finki.ukim.mk.fitness_app.repository.WorkoutRepository;
+import mk.finki.ukim.mk.fitness_app.service.ExerciseService;
 import mk.finki.ukim.mk.fitness_app.service.WorkoutService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,12 +23,12 @@ import java.util.stream.Collectors;
 public class WorkoutServiceImpl implements WorkoutService {
 
     private final WorkoutRepository workoutRepository;
-    private final ExerciseRepository exerciseRepository;
+    private final ExerciseService exerciseService;
 
 
-    public WorkoutServiceImpl(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository) {
+    public WorkoutServiceImpl(WorkoutRepository workoutRepository, ExerciseService exerciseService) {
         this.workoutRepository = workoutRepository;
-        this.exerciseRepository = exerciseRepository;
+        this.exerciseService = exerciseService;
     }
 
     @Override
@@ -37,12 +39,15 @@ public class WorkoutServiceImpl implements WorkoutService {
     @Override
     public Optional<Workout> add_custom_workout(WorkoutDto workout) {
         ModelMapper modelmapper = new ModelMapper();
-        if (!workout.getExercises().isEmpty() && workout.getWorkout_days() != null && workout.getWorkout_split() != null)
+        if (workout.getWorkout_days() != null && workout.getWorkout_split() != null)
         {
-            List<Exercise> exercises = workout.getExercises().stream()
-                    .map(dto -> modelmapper.map(dto, Exercise.class))
-                    .toList();
-            return Optional.of(this.workoutRepository.save(new Workout(Workout_splits.valueOf(workout.getWorkout_split()), exercises, workout.getWorkout_days())));
+            List<Exercise> exercises = new ArrayList<>();
+            if (!workout.getExercises().isEmpty()) {
+                exercises = workout.getExercises().stream()
+                        .map(dto -> modelmapper.map(dto, Exercise.class))
+                        .toList();
+            }
+            return Optional.of(this.workoutRepository.save(new Workout(Workout_splits.valueOf(workout.getWorkout_split()),exercises , workout.getWorkout_days())));
         }
         return Optional.empty();
     }
@@ -73,11 +78,11 @@ public class WorkoutServiceImpl implements WorkoutService {
                 );
     }
 
-    @SneakyThrows
+
     @Override
-    public Optional<Workout> add_exercise_to_workout(Long workoutId, Long exerciseId){
+    public Optional<Workout> add_exercise_to_workout(Long workoutId, Long exerciseId) throws WorkoutNotFoundException, ExerciseNotFoundException{
         Workout workout = this.workoutRepository.findById(workoutId).orElseThrow(WorkoutNotFoundException::new);
-        Exercise exercise = this.exerciseRepository.findById(exerciseId).orElseThrow(ExerciseNotFoundException::new);
+        Exercise exercise = this.exerciseService.find_by_id(exerciseId).orElseThrow(ExerciseNotFoundException::new);
         workout.getExercises().add(exercise);
         return Optional.of(this.workoutRepository.save(workout));
     }

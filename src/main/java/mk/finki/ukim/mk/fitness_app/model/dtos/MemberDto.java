@@ -3,7 +3,7 @@ package mk.finki.ukim.mk.fitness_app.model.dtos;
 import lombok.Data;
 
 @Data
-public class UserDto {
+public class MemberDto {
 
     private String username;
 
@@ -13,7 +13,7 @@ public class UserDto {
 
     private Long workout_id;
 
-    public UserDto(String username, String role, String email, Long workout_id) {
+    public MemberDto(String username, String role, String email, Long workout_id) {
         this.username = username;
         this.role = role;
         this.email = email;

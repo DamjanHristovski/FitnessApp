@@ -29,4 +29,36 @@ public class Exercise {
     public Exercise() {
 
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Muscle_group getMuscle() {
+        return muscle;
+    }
+
+    public void setMuscle(Muscle_group muscle) {
+        this.muscle = muscle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
