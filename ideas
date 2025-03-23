@@ -2,3 +2,7 @@ Rating on the exercises. DONE
 Meal, Nutritive_values and Whole Package (meal + workout)
 Up votes / down votes on shared exercises / workout_splits.
 Gender, fitness_goal, workout history, friends system for User.
+More filtering options rather than finding only by id. (Show only certain meals by meal_type / Show only certain fitness_plans by workout..)
+Check if a meal / workout plan already exists in the list.
+Put a delete option for Fitness_plan (meals / workouts)\
+In the plan section, put Breakfast / Lunch / Dinner / Desert.

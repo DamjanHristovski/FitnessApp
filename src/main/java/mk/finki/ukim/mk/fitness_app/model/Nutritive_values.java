@@ -5,12 +5,13 @@ import jakarta.persistence.Entity;
 
 @Embeddable
 public class Nutritive_values {
-    private String calories;
-    private String protein;
-    private String fat;
-    private String carbohydrates;
+    private Float calories;
+    private Float protein;
+    private Float fat;
+    private Float carbohydrates;
 
-    public Nutritive_values(String calories, String protein, String fat, String carbohydrates) {
+
+    public Nutritive_values(Float calories, Float protein, Float fat, Float carbohydrates) {
         this.calories = calories;
         this.protein = protein;
         this.fat = fat;
@@ -20,35 +21,35 @@ public class Nutritive_values {
     public Nutritive_values() {
     }
 
-    public String getCalories() {
+    public Float getCalories() {
         return calories;
     }
 
-    public void setCalories(String calories) {
+    public void setCalories(Float calories) {
         this.calories = calories;
     }
 
-    public String getProtein() {
+    public Float getProtein() {
         return protein;
     }
 
-    public void setProtein(String protein) {
+    public void setProtein(Float protein) {
         this.protein = protein;
     }
 
-    public String getFat() {
+    public Float getFat() {
         return fat;
     }
 
-    public void setFat(String fat) {
+    public void setFat(Float fat) {
         this.fat = fat;
     }
 
-    public String getCarbohydrates() {
+    public Float getCarbohydrates() {
         return carbohydrates;
     }
 
-    public void setCarbohydrates(String carbohydrates) {
+    public void setCarbohydrates(Float carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
 }
