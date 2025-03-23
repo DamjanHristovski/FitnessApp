@@ -23,8 +23,7 @@ public class Exercise {
 
     private String description;
 
-    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @ElementCollection
     private List<Rating> rating;
 
     @ManyToOne

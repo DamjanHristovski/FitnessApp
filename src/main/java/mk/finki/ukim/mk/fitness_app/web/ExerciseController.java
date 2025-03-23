@@ -5,8 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import mk.finki.ukim.mk.fitness_app.model.Exercise;
 import mk.finki.ukim.mk.fitness_app.model.Rating;
 import mk.finki.ukim.mk.fitness_app.model.dtos.ExerciseDto;
-import mk.finki.ukim.mk.fitness_app.model.dtos.RatingDto;
-import mk.finki.ukim.mk.fitness_app.repository.WorkoutRepository;
 import mk.finki.ukim.mk.fitness_app.service.ExerciseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +52,7 @@ public class ExerciseController {
 
     @PostMapping("/{id}/add_rating")
     @Operation(summary = "Add a new rating to an exercise")
-    public ResponseEntity<Exercise> addRating(@PathVariable Long id, @RequestBody RatingDto rating) {
+    public ResponseEntity<Exercise> addRating(@PathVariable Long id, @RequestBody Rating rating) {
         return this.exerciseService.add_rating(id,rating)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

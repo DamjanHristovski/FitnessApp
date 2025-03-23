@@ -4,7 +4,6 @@ import mk.finki.ukim.mk.fitness_app.model.Enum.Muscle_group;
 import mk.finki.ukim.mk.fitness_app.model.Exercise;
 import mk.finki.ukim.mk.fitness_app.model.Rating;
 import mk.finki.ukim.mk.fitness_app.model.dtos.ExerciseDto;
-import mk.finki.ukim.mk.fitness_app.model.dtos.RatingDto;
 import mk.finki.ukim.mk.fitness_app.repository.ExerciseRepository;
 import mk.finki.ukim.mk.fitness_app.service.ExerciseService;
 import org.springframework.stereotype.Service;
@@ -35,11 +34,11 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Optional<Exercise> add_rating(Long id, RatingDto rating) {
+    public Optional<Exercise> add_rating(Long id, Rating rating) {
         if (this.exerciseRepository.findById(id).isPresent())
         {
             Exercise exercise = this.exerciseRepository.findById(id).get();
-            exercise.getRating().add(new Rating(rating.getStars(),rating.getComment(),exercise));
+            exercise.getRating().add(new Rating(rating.getStars(),rating.getComment()));
             return Optional.of(this.exerciseRepository.save(exercise));
         }
         return Optional.empty();
