@@ -2,21 +2,22 @@ package mk.finki.ukim.mk.fitness_app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import mk.finki.ukim.mk.fitness_app.model.Enum.Workout_splits;
 
 import java.util.List;
 
 @Entity
-@Data
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long workout_id;
 
     @Enumerated(EnumType.STRING)
     private Workout_splits workout_split;
 
-    @OneToMany
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
     private List<Exercise> exercises;
 
     private Integer working_days;
@@ -31,12 +32,12 @@ public class Workout {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getWorkout_id() {
+        return workout_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setWorkout_id(Long workout_id) {
+        this.workout_id = workout_id;
     }
 
     public Workout_splits getWorkout_split() {

@@ -1,8 +1,11 @@
 package mk.finki.ukim.mk.fitness_app.model.dtos;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.List;
+
 public class ExerciseDto {
 
     private String name;
@@ -10,6 +13,7 @@ public class ExerciseDto {
     private String muscle;
 
     private String description;
+
 
     public ExerciseDto(String name, String muscle, String description) {
         this.name = name;

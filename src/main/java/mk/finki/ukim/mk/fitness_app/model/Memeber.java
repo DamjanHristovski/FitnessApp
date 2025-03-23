@@ -2,10 +2,13 @@ package mk.finki.ukim.mk.fitness_app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import mk.finki.ukim.mk.fitness_app.model.Enum.User_Roles;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Memeber {
 
     @Id

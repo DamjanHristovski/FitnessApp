@@ -1,8 +1,11 @@
 package mk.finki.ukim.mk.fitness_app.model.dtos;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class MemberDto {
 
     private String username;

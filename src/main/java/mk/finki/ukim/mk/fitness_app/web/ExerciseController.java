@@ -3,7 +3,9 @@ package mk.finki.ukim.mk.fitness_app.web;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mk.finki.ukim.mk.fitness_app.model.Exercise;
+import mk.finki.ukim.mk.fitness_app.model.Rating;
 import mk.finki.ukim.mk.fitness_app.model.dtos.ExerciseDto;
+import mk.finki.ukim.mk.fitness_app.model.dtos.RatingDto;
 import mk.finki.ukim.mk.fitness_app.repository.WorkoutRepository;
 import mk.finki.ukim.mk.fitness_app.service.ExerciseService;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,13 @@ public class ExerciseController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{id}/ratings")
+    @Operation(summary = "Show all the ratings for a certain exercise")
+    public List<Rating> getAllRatings(@PathVariable Long id)
+    {
+        return this.exerciseService.show_ratings_for_exercise(id);
+    }
+
     @PostMapping("/add")
     @Operation(summary = "Add a new exercise")
     public ResponseEntity<Exercise> addExercise(@RequestBody ExerciseDto exercise) {
@@ -42,6 +51,16 @@ public class ExerciseController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PostMapping("/{id}/add_rating")
+    @Operation(summary = "Add a new rating to an exercise")
+    public ResponseEntity<Exercise> addRating(@PathVariable Long id, @RequestBody RatingDto rating) {
+        return this.exerciseService.add_rating(id,rating)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
 
     @PutMapping("/edit/{id}")
     @Operation(summary = "Edit an existing exercise")

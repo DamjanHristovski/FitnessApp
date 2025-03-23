@@ -2,7 +2,9 @@ package mk.finki.ukim.mk.fitness_app.service.impl;
 
 import mk.finki.ukim.mk.fitness_app.model.Enum.Muscle_group;
 import mk.finki.ukim.mk.fitness_app.model.Exercise;
+import mk.finki.ukim.mk.fitness_app.model.Rating;
 import mk.finki.ukim.mk.fitness_app.model.dtos.ExerciseDto;
+import mk.finki.ukim.mk.fitness_app.model.dtos.RatingDto;
 import mk.finki.ukim.mk.fitness_app.repository.ExerciseRepository;
 import mk.finki.ukim.mk.fitness_app.service.ExerciseService;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,26 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public List<Exercise> show_all_exercises() {
         return this.exerciseRepository.findAll();
+    }
+
+    @Override
+    public List<Rating> show_ratings_for_exercise(Long id) {
+        if (this.exerciseRepository.findById(id).isPresent())
+        {
+            return this.exerciseRepository.findById(id).get().getRating();
+        }
+        return null;
+    }
+
+    @Override
+    public Optional<Exercise> add_rating(Long id, RatingDto rating) {
+        if (this.exerciseRepository.findById(id).isPresent())
+        {
+            Exercise exercise = this.exerciseRepository.findById(id).get();
+            exercise.getRating().add(new Rating(rating.getStars(),rating.getComment(),exercise));
+            return Optional.of(this.exerciseRepository.save(exercise));
+        }
+        return Optional.empty();
     }
 
     @Override

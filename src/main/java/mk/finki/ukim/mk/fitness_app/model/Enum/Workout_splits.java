@@ -5,5 +5,6 @@ public enum Workout_splits {
     ArnoldSplit,
     BroSplit,
     UpperLower,
+    FullBody,
     Custom;
 }
